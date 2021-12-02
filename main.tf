@@ -52,8 +52,8 @@ resource "google_compute_disk" "default" {
 }
 
 resource "google_compute_attached_disk" "default" {
-  disk     = google_compute_disk.default.name
-  instance = google_compute_instance.vm_instance.name
+  disk     = google_compute_disk.default.id
+  instance = google_compute_instance.vm_instance.id
 }
 
 resource "google_compute_firewall" "default" {
