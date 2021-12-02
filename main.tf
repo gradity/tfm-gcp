@@ -28,8 +28,8 @@ resource "google_compute_instance" "vm_instance" {
 
   boot_disk {
     initialize_params {
-      # image = "debian-cloud/debian-9"
-      image = "cos-cloud/cos-stable"
+      image = "debian-cloud/debian-9"
+      # image = "cos-cloud/cos-stable"
     }
   }
 
@@ -37,6 +37,22 @@ resource "google_compute_instance" "vm_instance" {
     network = google_compute_network.vpc_network.name
     access_config {}
   }
+}
+
+resource "google_compute_disk" "default" {
+  name  = "terraform-disk"
+  type  = "pd-ssd"
+  zone  = "asia-southeast2-a"
+  image = "debian-9-stretch-v20200805"
+  labels = {
+    environment = "dev"
+  }
+  physical_block_size_bytes = 4096
+}
+
+resource "google_compute_attached_disk" "default" {
+  disk     = google_compute_disk.default.name
+  instance = google_compute_instance.vm_instance.name
 }
 
 resource "google_compute_firewall" "default" {
