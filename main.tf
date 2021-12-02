@@ -24,7 +24,7 @@ resource "google_compute_instance" "vm_instance" {
 
   tags = ["tfm", "web"]
 
-  # allow_stopping_for_update = true
+  allow_stopping_for_update = true
 
   boot_disk {
     initialize_params {
