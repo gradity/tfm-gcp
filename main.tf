@@ -44,6 +44,7 @@ resource "google_compute_disk" "default" {
   type  = "pd-ssd"
   zone  = "asia-southeast2-a"
   image = "debian-9-stretch-v20200805"
+  size = 20
   labels = {
     environment = "dev"
   }
